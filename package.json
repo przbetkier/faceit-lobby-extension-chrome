@@ -1,20 +1,20 @@
 {
   "name": "tuscan-extension",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Extension for faceit webpage which enables tuscan.pro features",
   "main": "src/js/main.js",
   "scripts": {
-    "build": "parcel build src/js/main.js -d src/build/ -o main.js",
+    "build": "parcel build src/js/main.js -d extension/js/ -o main.js && parcel build src/js/popup.js -d extension/js/ -o popup.js && gulp copy-html",
     "watch": "parcel watch src/js/main.js -d src/build/ -o main.js"
   },
   "author": "przbetkier",
   "dependencies": {
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.12.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "redom": "^3.19.0",
-    "select-dom": "^4.2.1"
+    "parcel-bundler": "1.12.3",
+    "redom": "^3.19.0"
+  },
+  "devDependencies": {
+    "gulp": "4.0.0"
   }
 }
