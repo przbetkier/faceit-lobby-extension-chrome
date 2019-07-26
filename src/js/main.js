@@ -54,7 +54,7 @@ function doFaction(faction, teamMemberElements) {
     let query = queryParam(faction);
 
     // Compose URL to Tuscan service
-    const url = `https://tuscan-service.herokuapp.com/faceit/players/details/csgo${query}`;
+    const url = `https://tuscan-service.herokuapp.com/tuscan-api/plugin/players/details/csgo${query}`;
 
     let mapStatsList;
 

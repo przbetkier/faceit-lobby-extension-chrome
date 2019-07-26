@@ -20,8 +20,9 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://www.faceit.com/*",
+        "https://www.faceit.com/*",
+        "https://tuscan.pro/*"
       ],
       "js": [
         "js/main.js"
