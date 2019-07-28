@@ -1,4 +1,4 @@
-## Faceit-lobby-extension [Google Chrome] 
+# Faceit-lobby-extension [Google Chrome] 
 
 ![Logo](src/icons/icon48.png)
 
@@ -12,3 +12,14 @@ Powered by: [tuscan.pro](https://tuscan.pro)
 ![Screenshot](https://lh3.googleusercontent.com/wfSmzWCSfwH--GdIoT1Dxcn--_PmmXTwHMod4yeQQ_cLKsY-mdFkIS4EK3swYiq4q3fS-5J_0Q=w640-h400-e365)
 
 
+### Development
+
+1. All source code you can find at /src catalog.
+2. Execute build script with command: `npm run build`
+3. A new directory /extension will be created. 
+4. Open chrome://extensions.
+5. Check the Developer mode checkbox.
+6. Click on Load unpacked extension.
+7. Select the /extension folder.
+
+Pull requests & suggestions for improvements are welcome.
