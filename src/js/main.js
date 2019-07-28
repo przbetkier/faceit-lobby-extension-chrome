@@ -1,14 +1,31 @@
 import {el, setStyle} from 'redom';
 
+let url = location.href;
+document.body.addEventListener('click', () => {
+    requestAnimationFrame(() => {
+        url !== location.href && run();
+        url = location.href;
+    });
+}, true);
 
 window.onload = () => {
     chrome.storage.sync.get("enableTuscan", function (result) {
-        console.log('Value currently is ' + result.enableTuscan);
-        let enabled = result.enableTuscan;
-        if (enabled === 'true') {
-            run();
+            let enabled = result.enableTuscan;
+
+            if (enabled === "true") {
+                run();
+            }
+            // Enable extension if it is installed for the first time
+            else if (enabled === undefined || enabled === null) {
+                chrome.storage.sync.set({"enableTuscan": "true"}, function () {
+                    console.log('Settings saved [true]');
+                    run();
+                });
+            } else {
+                console.log("Extension turned off.")
+            }
         }
-    });
+    );
 };
 
 function run() {
@@ -18,7 +35,12 @@ function run() {
 
     // Execute when ready
     if (teamMemberElements.length === 10) {
-        injectApp(teamMemberElements);
+
+        // Check if extension elements has not been injected to the DOM already
+        let tuscanElements = document.getElementsByClassName('tuscan-stats');
+        if (tuscanElements.length === 0) {
+            injectApp(teamMemberElements);
+        }
     } else {
         // Or wait and retry
         setTimeout(run, 1000);
@@ -68,7 +90,7 @@ function doFaction(faction, teamMemberElements) {
             mapStatsList.forEach(stat => {
 
                 // Create table element:
-                let table = el('table', {className: "text-sm"});
+                let table = el('table', {className: "tuscan-stats text-sm"});
 
                 setStyle(table, {
                     width: '100%',
@@ -87,7 +109,7 @@ function doFaction(faction, teamMemberElements) {
                     let tr = el('tr',
                         el('td', map.csgoMap.toLowerCase()),
                         el('td', map.matches),
-                        el('td', `${map.wins} (${map.winPercentage})`),
+                        el('td', `${map.wins} (${map.winPercentage}%)`),
                         el('td', map.kdRatio),
                         el('td',));
                     table.appendChild(tr);
