@@ -1,10 +1,10 @@
 {
-  "name": "tuscan-extension",
-  "version": "0.0.1",
-  "description": "Extension for faceit webpage which enables tuscan.pro features",
+  "name": "faceit-lobby-extension",
+  "version": "0.0.2",
+  "description": "Extension for Faceit (CS:GO) which reveals additional info about the opponents in the match lobby.",
   "main": "src/js/main.js",
   "scripts": {
-    "build": "parcel build src/js/main.js -d extension/js/ -o main.js && parcel build src/js/popup.js -d extension/js/ -o popup.js && gulp copy-html",
+    "build": "parcel build src/js/main.js -d extension/js/ -o main.js && parcel build src/js/popup.js -d extension/js/ -o popup.js && gulp copy-src",
     "watch": "parcel watch src/js/main.js -d src/build/ -o main.js"
   },
   "author": "przbetkier",
@@ -15,6 +15,7 @@
     "redom": "^3.19.0"
   },
   "devDependencies": {
-    "gulp": "4.0.0"
+    "gulp": "4.0.0",
+    "merge-stream": "2.0.0"
   }
 }
