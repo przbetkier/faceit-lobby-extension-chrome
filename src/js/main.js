@@ -8,7 +8,7 @@ export function matchesRegex(str) {
 window.onload = () => {
     let url = location.href;
     if (matchesRegex(url)) {
-        run();
+        validateAndRun();
     }
 };
 
