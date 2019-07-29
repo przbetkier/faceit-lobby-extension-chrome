@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Faceit lobby extension",
   "description": "Helper revealing players performance while map picking.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "browser_action": {
     "default_icon": "icons/icon.png",
     "icons": {
@@ -17,10 +17,13 @@
     "tabs",
     "storage"
   ],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": [
-        "https://www.faceit.com/*",
         "https://www.faceit.com/*",
         "https://tuscan.pro/*"
       ],

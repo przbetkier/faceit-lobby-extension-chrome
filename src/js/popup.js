@@ -1,10 +1,9 @@
-
 window.onload = () => {
 
-document.getElementById("baton").addEventListener("click", changeParam);
+    document.getElementById("enabled").addEventListener("click", changeParam);
 
     chrome.storage.sync.get("enableTuscan", function (result) {
-        document.getElementById("baton").checked = result.enableTuscan === "true";
+        document.getElementById("enabled").checked = result.enableTuscan === "true";
     });
 };
 

@@ -1,32 +1,35 @@
 import {el, setStyle} from 'redom';
 
-let url = location.href;
-document.body.addEventListener('click', () => {
-    requestAnimationFrame(() => {
-        url !== location.href && run();
-        url = location.href;
-    });
-}, true);
+export function matchesRegex(str) {
+    let reg = /https:\/\/www\.faceit\.com\/([a-z]*)\/csgo\/room\/([a-zA-Z0-9\-]*)$/
+    return reg.test(str)
+}
 
 window.onload = () => {
+    let url = location.href;
+    if (matchesRegex(url)) {
+        validateAndRun();
+    }
+};
+
+chrome.runtime.onMessage.addListener(
+    function (newUrl, sender, callback) {
+        console.log("Detected url change. The new one is: " + newUrl);
+        validateAndRun();
+    });
+
+function validateAndRun() {
     chrome.storage.sync.get("enableTuscan", function (result) {
             let enabled = result.enableTuscan;
 
             if (enabled === "true") {
                 run();
-            }
-            // Enable extension if it is installed for the first time
-            else if (enabled === undefined || enabled === null) {
-                chrome.storage.sync.set({"enableTuscan": "true"}, function () {
-                    console.log('Settings saved [true]');
-                    run();
-                });
             } else {
                 console.log("Extension turned off.")
             }
         }
     );
-};
+}
 
 function run() {
 

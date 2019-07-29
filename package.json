@@ -1,11 +1,10 @@
 {
   "name": "faceit-lobby-extension",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extension for Faceit (CS:GO) which reveals additional info about the opponents in the match lobby.",
   "main": "src/js/main.js",
   "scripts": {
-    "build": "parcel build src/js/main.js -d extension/js/ -o main.js && parcel build src/js/popup.js -d extension/js/ -o popup.js && gulp copy-src",
-    "watch": "parcel watch src/js/main.js -d src/build/ -o main.js"
+    "build": "parcel build src/js/main.js -d extension/js/ -o main.js && parcel build src/js/popup.js -d extension/js/ -o popup.js  && parcel build src/js/background.js -d extension/js/ -o background.js && gulp copy-src"
   },
   "author": "przbetkier",
   "dependencies": {
