@@ -1,6 +1,5 @@
 import {el, setStyle} from 'redom';
 
-
 export function matchesRegex(str) {
     let reg = /https:\/\/www\.faceit\.com\/([a-z]*)\/csgo\/room\/([a-zA-Z0-9\-]*)$/
     return reg.test(str)
