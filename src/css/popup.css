@@ -1,12 +1,12 @@
 body {
     color: white;
-    background-color: #181818;
+    background-color: rgb(38, 50, 56);
     min-height: 250px;
     height: 250px;
     width: 400px;
-    padding: 5px;
     display: block;
     font-family: 'Quantico', sans-serif;
+    margin: 0;
 }
 
 a {
@@ -16,10 +16,16 @@ a {
 
 h2 {
     text-align: center;
+    padding: 1rem;
+    background-color: #e64a19;
+}
+
+.container {
+    padding: 16px;
 }
 
 .center {
-    margin-top: 32px;
+    margin-top: 8px;
 }
 
 #container {
@@ -69,11 +75,11 @@ h2 {
 }
 
 input:checked + .slider {
-    background-color: #f39928;
+    background-color: #e64a19;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #f3ae29;
+    box-shadow: 0 0 1px #e64a19;
 }
 
 input:checked + .slider:before {
@@ -94,4 +100,8 @@ input:checked + .slider:before {
 .didascalia {
     font-style: italic;
     margin-bottom: 8px;
+}
+
+.didascalia > p > span {
+    margin-right: 8px;
 }

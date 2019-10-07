@@ -1,6 +1,6 @@
 {
   "name": "faceit-lobby-extension",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Extension for Faceit (CS:GO) which reveals additional info about the opponents in the match lobby.",
   "main": "src/js/main.js",
   "scripts": {
