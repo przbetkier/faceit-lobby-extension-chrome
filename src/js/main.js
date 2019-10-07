@@ -1,4 +1,5 @@
 import {el, setStyle} from 'redom';
+import {API_URL} from './commons';
 
 export function matchesRegex(str) {
     let reg = /https:\/\/www\.faceit\.com\/([a-z]*)\/csgo\/room\/([a-zA-Z0-9\-]*)$/
@@ -79,7 +80,7 @@ function doFaction(faction, teamMemberElements) {
     let query = queryParam(faction);
 
     // Compose URL to Tuscan service
-    const url = `https://tuscan-service.herokuapp.com/tuscan-api/plugin/players/details/csgo${query}`;
+    const url = `${API_URL}/tuscan-api/plugin/players/details/csgo${query}`;
 
     let mapStatsList;
 

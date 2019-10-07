@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+#### [0.0.4] (07-10-2019)
+- Switch API host from heroku to custom domain
+- Popup styles (slider colors, margin, padding)
 
 #### [0.0.3] (29-07-2019)
 - Background script implemented
