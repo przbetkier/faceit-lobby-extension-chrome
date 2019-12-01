@@ -1,5 +1,9 @@
 # Faceit-lobby-extension [Google Chrome] 
 
+![Users](https://img.shields.io/chrome-web-store/users/iocddpjkmoaaminicflaggnckdainlef)
+![Version](https://img.shields.io/chrome-web-store/v/iocddpjkmoaaminicflaggnckdainlef)
+![Rating](https://img.shields.io/chrome-web-store/rating/iocddpjkmoaaminicflaggnckdainlef)
+
 ![Logo](src/icons/icon48.png)
 
 This is a tool which helps during map picking on Faceit CS:GO matches. The extension provides additional information about queued players performance on particular maps, thus it should help in making more thought-out decision about which map should be played or banned in the first place.
