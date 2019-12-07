@@ -1,10 +1,11 @@
-import {matchesRegex} from "./main";
+import { matchesRegex } from './main';
+import { setItem } from './storage';
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
     // Send message only if match room is visited
     if (changeInfo.url && matchesRegex(changeInfo.url)) {
-        chrome.tabs.query({active: true}, tabs => {
+        chrome.tabs.query({ active: true }, tabs => {
             tabs.forEach(tab => {
                 chrome.tabs.sendMessage(tab.id, changeInfo.url);
             });
@@ -13,7 +14,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 });
 
 chrome.runtime.onInstalled.addListener(function (object) {
-    chrome.storage.sync.set({"enableTuscan": "true"}, function () {
-        console.log("Enabled tuscan extension.");
-    });
+    setItem({ enableTuscan: 'true' }, () => console.log('Enabled tuscan extension'));
+    setItem({ statsExpanded: 'true' }, () => console.log('Enabled tuscan extension'));
 });

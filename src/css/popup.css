@@ -28,7 +28,7 @@ h2 {
     margin-top: 8px;
 }
 
-#container {
+.row-item {
     align-items: center;
     display: flex;
     justify-content: space-between;
