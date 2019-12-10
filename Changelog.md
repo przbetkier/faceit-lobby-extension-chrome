@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+#### [0.0.5] (07-10-2019)
+- Stats are now expandable
+- Default expand state may be set in popup
+
 #### [0.0.4] (07-10-2019)
 - Switch API host from heroku to custom domain
 - Popup styles (slider colors, margin, padding)

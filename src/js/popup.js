@@ -1,24 +1,28 @@
+import { getItem, setItem } from './storage';
+
+function setupButton(elementId, storageKey) {
+    const settingsElement = document.getElementById(elementId);
+    settingsElement.addEventListener('click', () => toggleParam(storageKey));
+    getItem(storageKey, result => settingsElement.checked = result[storageKey] === 'true');
+}
+
 window.onload = () => {
-
-    document.getElementById("enabled").addEventListener("click", changeParam);
-
-    chrome.storage.sync.get("enableTuscan", function (result) {
-        document.getElementById("enabled").checked = result.enableTuscan === "true";
-    });
+    setupButton('tuscan-enabled', 'enableTuscan');
+    setupButton('stats-expanded', 'statsExpanded');
 };
 
-function changeParam() {
-    chrome.storage.sync.get("enableTuscan", function (result) {
-        let enabled = result.enableTuscan;
-
-        if (enabled === "true") {
-            chrome.storage.sync.set({"enableTuscan": "false"}, function () {
-                console.log('Settings saved [false].');
-            });
-        } else {
-            chrome.storage.sync.set({"enableTuscan": "true"}, function () {
-                console.log('Settings saved [true]');
-            });
+const toggleParam = (param) => {
+    getItem(param,
+        result => {
+            const enabled = result[param];
+            const obj = {};
+            if (enabled === 'true') {
+                obj[param] = 'false';
+                setItem(obj, () => {});
+            } else {
+                obj[param] = 'true';
+                setItem(obj, () => {});
+            }
         }
-    })
-}
+    );
+};

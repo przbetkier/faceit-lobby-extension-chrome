@@ -19,8 +19,8 @@ Powered by: [tuscan.pro](https://tuscan.pro)
 ### Development
 
 1. All source code you can find at /src catalog.
-2. Execute build script with command: `npm run build`
-3. A new directory /extension will be created. 
+2. Run script with command: `npm run dev`.
+3. A new directory /extension will be created. The project will automatically rebuild when code change occurs in `/src/**` directory 
 4. Open chrome://extensions.
 5. Check the Developer mode checkbox.
 6. Click on Load unpacked extension.

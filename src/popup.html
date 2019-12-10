@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <title>Faceit lobby extension</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/popup.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/popup.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
 
     <script src="js/popup.js"></script>
@@ -15,10 +15,17 @@
 <div class="container">
     <div class="center">
         <p>Makes map picking much easier!</p>
-        <div id="container">
-            <p>Enabled: </p>
+        <div class="row-item">
+            <p>Extension enabled: </p>
             <label class="switch">
-                <input id="enabled" type="checkbox">
+                <input id="tuscan-enabled" type="checkbox">
+                <span class="slider round"/>
+            </label>
+        </div>
+        <div class="row-item">
+            <p>Expand stats by default</p>
+            <label class="switch">
+                <input id="stats-expanded" type="checkbox">
                 <span class="slider round"/>
             </label>
         </div>
@@ -27,7 +34,8 @@
     <p>Powered by <a href="https://tuscan.pro" target="_blank">tuscan.pro </a><i class="fa fa-copyright"></i></p>
 
     <div class="didascalia">
-        <p><span>Version: 0.0.4</span> <span><a href="https://github.com/przbetkier/faceit-lobby-extension-chrome" target="_blank">Source code</a></span></p>
+        <p><span>Version: 0.0.5</span> <span><a href="https://github.com/przbetkier/faceit-lobby-extension-chrome"
+                                                target="_blank">Source code</a></span></p>
 
     </div>
 </div>
