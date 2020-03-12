@@ -13,28 +13,34 @@
 <h2>Faceit Lobby Extension</h2>
 
 <div class="container">
-    <div class="center">
-        <p>Makes map picking much easier!</p>
-        <div class="row-item">
-            <p>Extension enabled: </p>
-            <label class="switch">
-                <input id="tuscan-enabled" type="checkbox">
-                <span class="slider round"/>
-            </label>
-        </div>
-        <div class="row-item">
-            <p>Expand stats by default</p>
-            <label class="switch">
-                <input id="stats-expanded" type="checkbox">
-                <span class="slider round"/>
-            </label>
-        </div>
+    <p>Makes map picking much easier!</p>
+    <div class="row-item">
+        <p>Extension enabled:</p>
+        <label class="switch">
+            <input id="tuscan-enabled" type="checkbox">
+            <span class="slider round"/>
+        </label>
+    </div>
+    <div class="row-item">
+        <p>Expand stats by default:</p>
+        <label class="switch">
+            <input id="stats-expanded" type="checkbox">
+            <span class="slider round"/>
+        </label>
+    </div>
+    <div class="row-item">
+        <p>Order maps by:</p>
+        <select id="map-order-select">
+            <option value="kd">K/D</option>
+            <option value="count">Matches Played</option>
+            <option value="winpercentage">Win %</option>
+        </select>
     </div>
 
     <p>Powered by <a href="https://tuscan.pro" target="_blank">tuscan.pro </a><i class="fa fa-copyright"></i></p>
 
     <div class="didascalia">
-        <p><span>Version: 0.0.5</span> <span><a href="https://github.com/przbetkier/faceit-lobby-extension-chrome"
+        <p><span>Version: 0.1.0</span> <span><a href="https://github.com/przbetkier/faceit-lobby-extension-chrome"
                                                 target="_blank">Source code</a></span></p>
 
     </div>

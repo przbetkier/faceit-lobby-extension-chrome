@@ -8,7 +8,7 @@
 
 This is a tool which helps during map picking on Faceit CS:GO matches. The extension provides additional information about queued players performance on particular maps, thus it should help in making more thought-out decision about which map should be played or banned in the first place.
 
-[AVAILABLE HERE](https://chrome.google.com/webstore/detail/faceit-lobby-extension/iocddpjkmoaaminicflaggnckdainlef)
+[DOWNLOAD](https://chrome.google.com/webstore/detail/faceit-lobby-extension/iocddpjkmoaaminicflaggnckdainlef)
 
 Powered by: [tuscan.pro](https://tuscan.pro)
 
