@@ -79,7 +79,6 @@ function setupExpandableDivWithChevron(statsExpanded, table) {
     const divContainer = el('div');
     setStyle(divContainer, {
         borderTop: '1px solid rgb(31, 31, 31)',
-        cursor: 'pointer',
         height: statsExpanded ? '100%' : '26px'
     });
     const chevron = divContainer.appendChild(el('span'));
@@ -88,6 +87,7 @@ function setupExpandableDivWithChevron(statsExpanded, table) {
         display: 'inline-block',
         borderRight: '2px solid #fff',
         borderBottom: '2px solid #fff',
+        cursor: 'pointer',
         width: '10px',
         height: '10px',
         transform: statsExpanded ? 'rotate(45deg)' : 'rotate(-135deg)',
@@ -95,7 +95,7 @@ function setupExpandableDivWithChevron(statsExpanded, table) {
     });
     divContainer.appendChild(chevron);
     divContainer.appendChild(table);
-    divContainer.addEventListener('click', () => {
+    chevron.addEventListener('click', () => {
         if (table.style.display === 'none') {
             chevron.style.transform = 'rotate(45deg)';
             divContainer.style.height = '100%';
@@ -141,19 +141,36 @@ function doFaction(faction, teamMemberElements, statsExpanded) {
                     display: statsExpanded ? null : 'none'
                 });
 
-                // Define columns
-                let tr = el('tr', el('td', 'map'), el('td', 'matches'), el('td', 'wins'), el('td', 'kdRatio'));
+                // Define table head
+                let heads = [
+                    el('td', 'map'),
+                    el('td', 'matches'),
+                    el('td', 'wins'),
+                    el('td', 'win%'),
+                    el('td', 'kdRatio')
+                ];
+
+                heads.forEach(t => t.style.cursor = 'pointer');
+                let tr = el('tr', heads, { className: "map-head" });
                 table.appendChild(tr);
 
-                // Sort maps by K/D ratio, then create a table row for each map
-                stat.mapStats.sort((a, b) => (a.kdRatio < b.kdRatio) ? 1 : -1).forEach(map => {
-                    let tr = el('tr',
-                        el('td', map.csgoMap.toLowerCase()),
-                        el('td', map.matches),
-                        el('td', `${map.wins} (${map.winPercentage}%)`),
-                        el('td', map.kdRatio),
-                        el('td',));
-                    table.appendChild(tr);
+                // Check sorting method
+                getItem('mapOrderSelect', result => {
+                    // Then create a table row for each map
+                    let orderBy = result['mapOrderSelect'];
+                    if (orderBy === 'winpercentage') {
+                        stat.mapStats.sort((a, b) => (a.winPercentage < b.winPercentage) ? 1 : -1)
+                            .map(map => createMapRow(map))
+                            .forEach(mapRow => table.appendChild(mapRow));
+                    } else if (orderBy === 'count') {
+                        stat.mapStats.sort((a, b) => (a.matches < b.matches) ? 1 : -1)
+                            .map(map => createMapRow(map))
+                            .forEach(mapRow => table.appendChild(mapRow));
+                    } else {
+                        stat.mapStats.sort((a, b) => (a.kdRatio < b.kdRatio) ? 1 : -1)
+                            .map(map => createMapRow(map))
+                            .forEach(mapRow => table.appendChild(mapRow));
+                    }
                 });
 
                 const divContainer = setupExpandableDivWithChevron(statsExpanded, table);
@@ -164,9 +181,35 @@ function doFaction(faction, teamMemberElements, statsExpanded) {
                         el.parentNode.parentNode.parentNode.firstElementChild.appendChild(divContainer);
                         return el
                     });
+
+                const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+                const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+                        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+                )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+                document.querySelectorAll('.map-head')
+                    .forEach(heads =>
+                        heads.querySelectorAll("td")
+                            .forEach(th => th.addEventListener('click', (() => {
+                                const table = th.closest('table');
+                                Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+                                    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), false))
+                                    .forEach(tr => table.appendChild(tr));
+                            }))));
             });
         })
     })
+}
+
+function createMapRow(map) {
+    return el('tr',
+        el('td', map.csgoMap.toLowerCase()),
+        el('td', map.matches),
+        el('td', `${map.wins}`),
+        el('td', map.winPercentage),
+        el('td', map.kdRatio)
+    );
 }
 
 function getTuscanLink(nickname) {
@@ -178,9 +221,5 @@ function getTuscanLink(nickname) {
 }
 
 function queryParam(nicknames) {
-    let query = '?nickname=';
-    nicknames.forEach(nickname => {
-        query += `${nickname},`
-    });
-    return query.substr(0, query.length - 1)
+    return `?nickname=${nicknames.toString()}`;
 }

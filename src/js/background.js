@@ -16,4 +16,5 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 chrome.runtime.onInstalled.addListener(function (object) {
     setItem({ enableTuscan: 'true' }, () => console.log('Enabled tuscan extension'));
     setItem({ statsExpanded: 'true' }, () => console.log('Enabled tuscan extension'));
+    setItem({ mapOrderSelect: 'kd' }, () => console.log('Ordering stats by kd.'));
 });
